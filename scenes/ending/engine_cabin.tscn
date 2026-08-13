@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="" load_steps=2 sub_resource_count=0]
+
+[ext_resource type="Script" path="res://scripts/ending/engine_cabin.gd" id="1"]
+
+[node name="EngineCabin" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.01, 0.03, 1)
+
+[node name="EndingText" type="RichTextLabel" parent="."]
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 290.0
+offset_bottom = 140.0
+bbcode_enabled = true
+text = "[center][color=#aaaaff]You reach the driver's cabin.[/color]
+
+The seat is empty.
+
+On the dashboard, a photograph.
+
+A group of passengers. A train. A date: years ago.
+
+[color=#ccaaff]You are in the photograph.[/color]
+
+You have been on this train since the accident.
+You simply forgot.
+
+The train slows.
+For the first time in years, it slows.
+
+[color=#ffffff]You finally remember where you were going.[/color][/center]"
+autowrap_mode = 3
+theme_override_font_sizes/normal_font_size = 10
+
+[node name="PromptLabel" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 148.0
+offset_right = 230.0
+offset_bottom = 165.0
+horizontal_alignment = 1
+text = "[ Press any key to continue ]"
+theme_override_font_sizes/font_size = 9
+modulate = Color(0.6, 0.6, 0.8, 1)

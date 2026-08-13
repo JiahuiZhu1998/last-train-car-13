@@ -1,0 +1,16 @@
+# Godot-specific ignores
+.import/
+export.cfg
+export_preset.cfg
+*.tmp
+.mono/
+.godot/
+*.uid
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="" load_steps=2 sub_resource_count=0]
+
+[ext_resource type="Script" path="res://scripts/combat/combat_manager.gd" id="1"]
+
+[node name="Combat" type="Node"]
+script = ExtResource("1")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.02, 0.1, 1)
+
+[node name="EnemyName" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 30.0
+text = "Enemy"
+theme_override_font_sizes/font_size = 14
+
+[node name="EnemyHP" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 28.0
+offset_right = 200.0
+offset_bottom = 48.0
+text = "?? HP"
+theme_override_font_sizes/font_size = 12
+
+[node name="LogLabel" type="RichTextLabel" parent="UI"]
+offset_left = 10.0
+offset_top = 60.0
+offset_right = 310.0
+offset_bottom = 130.0
+scroll_following = true
+theme_override_font_sizes/normal_font_size = 11
+
+[node name="PlayerHP" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 135.0
+offset_right = 200.0
+offset_bottom = 150.0
+text = "HP: 30 / 30"
+theme_override_font_sizes/font_size = 12
+
+[node name="Actions" type="VBoxContainer" parent="UI"]
+offset_left = 220.0
+offset_top = 120.0
+offset_right = 310.0
+offset_bottom = 175.0
+
+[node name="BtnAttack" type="Button" parent="UI/Actions"]
+text = "Attack"
+
+[node name="BtnGuard" type="Button" parent="UI/Actions"]
+text = "Guard"
+
+[node name="BtnInspect" type="Button" parent="UI/Actions"]
+text = "Inspect"
