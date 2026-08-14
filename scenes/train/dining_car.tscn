@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/characters/npc.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/train/encounter_trigger.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/train/door_trigger.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/props/accident_clue.gd" id="5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(14, 14)
@@ -157,6 +158,8 @@ collision_mask = 1
 script = ExtResource("4")
 target_scene = "res://scenes/train/car_13.tscn"
 requires_key = true
+requires_clue = true
+unlocks_car13 = true
 
 [node name="Col" type="CollisionShape2D" parent="DoorToCar13"]
 shape = SubResource("RectangleShape2D_5")
@@ -177,4 +180,31 @@ offset_bottom = 18.0
 text = "Dining Car"
 theme_override_font_sizes/font_size = 9
 modulate = Color(0.6, 0.6, 0.6, 1)
+[node name="AccidentClue" type="Node2D" parent="."]
+position = Vector2(210.0, 120.0)
+script = ExtResource("5")
 
+[node name="ClueVisual" type="ColorRect" parent="AccidentClue"]
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 4.0
+color = Color(0.8, 0.8, 0.85, 1)
+
+[node name="PickupArea" type="Area2D" parent="AccidentClue"]
+collision_layer = 4
+collision_mask = 0
+
+
+[node name="FeedbackLabel" type="Label" parent="AccidentClue"]
+offset_left = -70.0
+offset_top = -22.0
+offset_right = 70.0
+offset_bottom = -6.0
+horizontal_alignment = 1
+text = ""
+modulate = Color(0.85, 0.85, 0.9, 1)
+
+[node name="Col" type="CollisionShape2D" parent="AccidentClue/PickupArea"]
+
+shape = SubResource("RectangleShape2D_1")

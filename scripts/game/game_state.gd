@@ -9,7 +9,7 @@ var car13_unlocked: bool = false
 var conductor_defeated: bool = false
 var ending_unlocked: bool = false
 
-# Pending combat data — set before switching to combat scene, cleared on return.
+# Pending combat data - set before switching to combat scene, cleared on return.
 var pending_enemy: String = ""
 var return_scene: String = ""
 var return_position: Vector2 = Vector2.ZERO

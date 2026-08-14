@@ -1,7 +1,7 @@
 extends Node
 
 # Minimal turn-based combat manager.
-# Enemies are defined inline as data — no need for separate enemy scenes yet.
+# Enemies are defined inline as data - no need for separate enemy scenes yet.
 
 signal combat_ended(player_won: bool)
 
@@ -11,7 +11,7 @@ const ENEMY_DATA := {
 	"the_conductor":    {"name": "The Conductor",    "hp": 45, "attack": 8, "defense": 3},
 }
 
-# Player stats (base values — no level-up system needed for vertical slice)
+# Player stats (base values - no level-up system needed for vertical slice)
 var player_hp: int = 30
 var player_max_hp: int = 30
 var player_attack: int = 7
@@ -66,7 +66,7 @@ func _player_action(action: String) -> void:
 
 	match action:
 		"attack":
-			var dmg := max(1, player_attack - enemy_defense)
+			var dmg: int = max(1, player_attack - enemy_defense)
 			enemy_hp -= dmg
 			_log("You attack for %d damage." % dmg)
 		"guard":
@@ -90,7 +90,7 @@ func _enemy_turn() -> void:
 		return
 
 	var defense := player_defense * (2 if player_guarding else 1)
-	var dmg := max(1, enemy_attack - defense)
+	var dmg: int = max(1, enemy_attack - defense)
 	player_hp -= dmg
 	_log("%s attacks for %d damage!" % [enemy_name, dmg])
 	_refresh_ui()
@@ -120,7 +120,7 @@ func _end_combat(player_won: bool) -> void:
 	if player_won:
 		SceneTransition.return_from_combat()
 	else:
-		# Reload the combat scene is not what we want on death — just return.
+		# Reload the combat scene is not what we want on death - just return.
 		# A proper game-over screen is Day 2 work.
 		SceneTransition.return_from_combat()
 
