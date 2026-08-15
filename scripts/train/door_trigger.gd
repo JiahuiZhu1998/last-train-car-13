@@ -7,6 +7,7 @@ extends Area2D
 @export var requires_key: bool = false
 @export var requires_clue: bool = false
 @export var unlocks_car13: bool = false
+@export var requires_conductor_defeated: bool = false
 
 @onready var label: Label = $DoorLabel
 
@@ -23,6 +24,9 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if requires_clue and not GameState.found_accident_clue:
 		_show_message("Something tells me I should learn what happened before entering.")
+		return
+	if requires_conductor_defeated and not GameState.conductor_defeated:
+		_show_message("The engine cabin door is locked.")
 		return
 	if unlocks_car13:
 		GameState.car13_unlocked = true

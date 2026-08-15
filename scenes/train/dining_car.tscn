@@ -128,9 +128,20 @@ collision_layer = 2
 collision_mask = 1
 script = ExtResource("3")
 enemy_id = "crawling_thing"
+return_offset = Vector2(-40.0, 0.0)
 
 [node name="Col" type="CollisionShape2D" parent="EncounterTrigger"]
 shape = SubResource("RectangleShape2D_4")
+
+[node name="EnemyLabel" type="Label" parent="EncounterTrigger"]
+offset_left = -22.0
+offset_top = -34.0
+offset_right = 22.0
+offset_bottom = -20.0
+horizontal_alignment = 1
+text = "ENEMY"
+theme_override_font_sizes/font_size = 9
+modulate = Color(1, 0.6, 0.4, 1)
 
 [node name="DoorBackToPassenger" type="Area2D" parent="."]
 position = Vector2(8.0, 90.0)
@@ -208,3 +219,25 @@ modulate = Color(0.85, 0.85, 0.9, 1)
 [node name="Col" type="CollisionShape2D" parent="AccidentClue/PickupArea"]
 
 shape = SubResource("RectangleShape2D_1")
+
+[node name="ClueLabel" type="Label" parent="AccidentClue"]
+offset_left = -18.0
+offset_top = -22.0
+offset_right = 18.0
+offset_bottom = -10.0
+horizontal_alignment = 1
+text = "CLUE"
+theme_override_font_sizes/font_size = 9
+modulate = Color(0.85, 0.85, 0.9, 1)
+
+[node name="ControlHint" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="ControlHint"]
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 280.0
+offset_bottom = 16.0
+horizontal_alignment = 1
+text = "< Passenger    |    Car 13 >    |    CLUE to collect"
+theme_override_font_sizes/font_size = 9
+modulate = Color(0.9, 0.95, 1.0, 1)

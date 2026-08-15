@@ -8,7 +8,7 @@ signal combat_ended(player_won: bool)
 const ENEMY_DATA := {
 	"shadow_passenger": {"name": "Shadow Passenger", "hp": 12, "attack": 3, "defense": 1},
 	"crawling_thing":   {"name": "Crawling Thing",   "hp": 20, "attack": 5, "defense": 2},
-	"the_conductor":    {"name": "The Conductor",    "hp": 45, "attack": 8, "defense": 3},
+	"the_conductor":    {"name": "The Conductor",    "hp": 28, "attack": 6, "defense": 3},
 }
 
 # Player stats (base values - no level-up system needed for vertical slice)
@@ -89,7 +89,7 @@ func _enemy_turn() -> void:
 	if not _combat_active:
 		return
 
-	var defense := player_defense * (2 if player_guarding else 1)
+	var defense: int = player_defense * (2 if player_guarding else 1)
 	var dmg: int = max(1, enemy_attack - defense)
 	player_hp -= dmg
 	_log("%s attacks for %d damage!" % [enemy_name, dmg])
@@ -108,6 +108,9 @@ func _end_combat(player_won: bool) -> void:
 
 	if player_won:
 		_log("You defeated the %s!" % enemy_name)
+		# Record this normal encounter as resolved for the current run so its
+		# trigger does not immediately re-fire when we return to the scene.
+		GameState.mark_enemy_defeated(enemy_id)
 		if enemy_id == "the_conductor":
 			GameState.conductor_defeated = true
 			GameState.ending_unlocked = true
@@ -141,7 +144,7 @@ func _get_inspect_text() -> String:
 		"crawling_thing":
 			return "Something that used to be human. Moving on all fours beneath the seats."
 		"the_conductor":
-			return "The Conductor. He believes the train must never stop."
+			return "The Conductor. His uniform is burned at the edges. He believes the Night Express 13 must never stop."
 		_:
 			return "You study the enemy carefully."
 

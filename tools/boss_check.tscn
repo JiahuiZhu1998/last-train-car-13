@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="" load_steps=1 sub_resource_count=0]
+
+[ext_resource type="Script" path="res://tools/boss_check.gd" id="1"]
+
+[node name="BossCheck" type="Node"]
+script = ExtResource("1")

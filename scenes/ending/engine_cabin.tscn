@@ -12,36 +12,35 @@ anchor_bottom = 1.0
 color = Color(0.02, 0.01, 0.03, 1)
 
 [node name="EndingText" type="RichTextLabel" parent="."]
-offset_left = 30.0
-offset_top = 20.0
-offset_right = 290.0
-offset_bottom = 140.0
+offset_left = 18.0
+offset_top = 2.0
+offset_right = 302.0
+offset_bottom = 166.0
 bbcode_enabled = true
-text = "[center][color=#aaaaff]You reach the driver's cabin.[/color]
+text = "[center][color=#9fb8ff]The engine is silent.[/color]
 
-The seat is empty.
+There is no driver.
+The windshield is cracked.
 
-On the dashboard, a photograph.
+[color=#cccccc]A newspaper lies beside the controls.[/color]
 
-A group of passengers. A train. A date: years ago.
+[color=#ffb088]Night Express 13 — Fatal Derailment.[/color]
+No survivors.
 
-[color=#ccaaff]You are in the photograph.[/color]
+[color=#9fb8ff]You remember.[/color]
+You were on this train.
+You never survived the crash.
 
-You have been on this train since the accident.
-You simply forgot.
-
-The train slows.
-For the first time in years, it slows.
-
-[color=#ffffff]You finally remember where you were going.[/color][/center]"
+[color=#ffffff]LAST TRAIN: CAR 13[/color]
+[color=#ffffff]END[/color][/center]"
 autowrap_mode = 3
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 7
 
 [node name="PromptLabel" type="Label" parent="."]
 offset_left = 90.0
-offset_top = 148.0
+offset_top = 168.0
 offset_right = 230.0
-offset_bottom = 165.0
+offset_bottom = 180.0
 horizontal_alignment = 1
 text = "[ Press any key to continue ]"
 theme_override_font_sizes/font_size = 9
