@@ -32,7 +32,7 @@ theme_override_font_sizes/font_size = 12
 [node name="LogLabel" type="RichTextLabel" parent="UI"]
 offset_left = 10.0
 offset_top = 60.0
-offset_right = 310.0
+offset_right = 200.0
 offset_bottom = 130.0
 scroll_following = true
 theme_override_font_sizes/normal_font_size = 11
@@ -46,10 +46,10 @@ text = "HP: 30 / 30"
 theme_override_font_sizes/font_size = 12
 
 [node name="Actions" type="VBoxContainer" parent="UI"]
-offset_left = 220.0
-offset_top = 120.0
+offset_left = 210.0
+offset_top = 55.0
 offset_right = 310.0
-offset_bottom = 175.0
+offset_bottom = 156.0
 
 [node name="BtnAttack" type="Button" parent="UI/Actions"]
 text = "Attack"
