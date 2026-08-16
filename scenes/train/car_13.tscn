@@ -76,13 +76,6 @@ script = ExtResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 
-[node name="PlayerVisual" type="ColorRect" parent="Player"]
-offset_left = -7.0
-offset_top = -7.0
-offset_right = 7.0
-offset_bottom = 7.0
-color = Color(0.0, 0.8, 1.0, 1)
-
 [node name="Col" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_1")
 

@@ -2,11 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 80.0
 
-# Temporary gray-box visual: PLAYER is a bright cyan rectangle.
-func _make_square(color: Color) -> ImageTexture:
-	var img := Image.create(16, 16, false, Image.FORMAT_RGBA8)
-	img.fill(color)
-	return ImageTexture.create_from_image(img)
+# Real idle sprite for the lone passenger / investigator.
+const PLAYER_TEXTURE := preload("res://assets/player_idle.png")
+
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var sprite: Sprite2D = $Sprite2D
@@ -14,7 +12,9 @@ var _logged_move := false
 
 func _ready() -> void:
 	add_to_group("player")
-	sprite.texture = _make_square(Color(0.2, 0.85, 1.0, 1.0))
+	sprite.texture = PLAYER_TEXTURE
+	# 48x48 source shown at 1/3 so the character keeps the original ~16px footprint.
+	sprite.scale = Vector2(1.0 / 3.0, 1.0 / 3.0)
 	print("PLAYER READY")
 	print("PLAYER path=", get_path())
 
