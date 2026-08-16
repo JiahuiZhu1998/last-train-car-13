@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="" load_steps=5 sub_resource_count=7]
+[gd_scene format=3 uid="" load_steps=6 sub_resource_count=7]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/train/encounter_trigger.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/train/door_trigger.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/train/conductor_boss.gd" id="7"]
+[ext_resource type="Texture2D" path="res://assets/conductor_idle.png" id="8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(14, 14)
@@ -102,12 +103,10 @@ shape = SubResource("RectangleShape2D_3")
 position = Vector2(250.0, 90.0)
 script = ExtResource("7")
 
-[node name="BossVisual" type="ColorRect" parent="ConductorBoss"]
-offset_left = -12.0
-offset_top = -20.0
-offset_right = 12.0
-offset_bottom = 20.0
-color = Color(0.6, 0.0, 0.25, 1)
+[node name="BossVisual" type="Sprite2D" parent="ConductorBoss"]
+texture = ExtResource("8")
+centered = true
+scale = Vector2(0.75, 0.75)
 
 [node name="BossLabel" type="Label" parent="ConductorBoss"]
 offset_left = -55.0
