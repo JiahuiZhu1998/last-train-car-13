@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="" load_steps=14 sub_resource_count=7]
+[gd_scene format=3 uid="" load_steps=15 sub_resource_count=7]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/characters/npc.gd" id="2"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/train/door_trigger.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/props/car13_key.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://0tw21bprl4dc" path="res://assets/shadow_passenger.png" id="6"]
+
+[ext_resource type="Texture2D" uid="uid://cuknfgi4o873x" path="res://assets/environment/train/passenger_car_bg.png" id="7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(14, 14)
@@ -30,10 +32,10 @@ size = Vector2(320, 8)
 
 [node name="PassengerCar" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0.1, 0.08, 0.12, 1)
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("7")
+centered = false
+position = Vector2(0, 0)
 
 [node name="Floor" type="ColorRect" parent="."]
 offset_top = 140.0
