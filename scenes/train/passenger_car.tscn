@@ -1,10 +1,11 @@
-[gd_scene format=3 uid="" load_steps=5 sub_resource_count=7]
+[gd_scene format=3 uid="" load_steps=14 sub_resource_count=7]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/characters/npc.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/train/encounter_trigger.gd" id="3"]
 [ext_resource type="Script" path="res://scripts/train/door_trigger.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/props/car13_key.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://0tw21bprl4dc" path="res://assets/shadow_passenger.png" id="6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(14, 14)
@@ -142,12 +143,9 @@ return_offset = Vector2(-40.0, 0.0)
 [node name="Col" type="CollisionShape2D" parent="EncounterTrigger"]
 shape = SubResource("RectangleShape2D_4")
 
-[node name="EncounterVisual" type="ColorRect" parent="EncounterTrigger"]
-offset_left = -10.0
-offset_top = -15.0
-offset_right = 10.0
-offset_bottom = 15.0
-color = Color(0.9, 0.2, 0.9, 1)
+[node name="EncounterVisual" type="Sprite2D" parent="EncounterTrigger"]
+texture = ExtResource("6")
+centered = true
 [node name="EnemyLabel" type="Label" parent="EncounterTrigger"]
 offset_left = -18.0
 offset_top = -30.0
