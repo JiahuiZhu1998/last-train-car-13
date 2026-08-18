@@ -1,5 +1,7 @@
 extends Node2D
 
+const DialogueStyle := preload("res://scripts/ui/dialogue_style.gd")
+
 @export var defeat_lines: Array[String] = [
     "You should have stayed in your seat.",
 ]
@@ -14,6 +16,7 @@ var _line_index: int = 0
 @onready var victory_feedback: CanvasItem = get_node("VictoryFeedback")
 
 func _ready() -> void:
+    DialogueStyle.apply(balloon, balloon_label, "THE CONDUCTOR")
     if GameState.conductor_defeated:
         _hide_boss()
         if victory_feedback != null:

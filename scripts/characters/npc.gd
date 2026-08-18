@@ -4,6 +4,11 @@ extends Node2D
 # Interaction is detected when the player's InteractionArea overlaps this
 # node's HitArea (collision layer 4). interact() toggles the balloon so the
 # same key press never both opens and closes it in one frame.
+#
+# The balloon styling is applied at runtime via DialogueStyle so the source
+# scenes under scenes/train (gameplay/collision/triggers) stay unchanged.
+
+const DialogueStyle := preload("res://scripts/ui/dialogue_style.gd")
 
 @export var dialogue_lines: Array[String] = [
 	"Don't go to Car 13.",
@@ -15,6 +20,7 @@ var _line_index: int = 0
 @onready var balloon: CanvasLayer = $DialogueBalloon
 
 func _ready() -> void:
+	DialogueStyle.apply(balloon, label, _speaker_name())
 	# Temporary gray-box visual: NPC is a green rectangle (only if a
 	# Sprite2D is present, e.g. in the real scenes).
 	var sp := get_node_or_null("Sprite2D")
@@ -30,3 +36,13 @@ func interact() -> void:
 	balloon.visible = true
 	label.text = dialogue_lines[_line_index]
 	_line_index = (_line_index + 1) % dialogue_lines.size()
+
+# Use the scene's NpcLabel text (if present) as the speaker name, otherwise
+# fall back to "PASSENGER". Purely visual; no node path is required.
+func _speaker_name() -> String:
+	var lp := get_node_or_null("NpcLabel") as Label
+	# The in-scene NpcLabel is a debug placeholder ("NPC"), so only treat it as a
+	# real name when it has been set to something else. Keeps the box clean.
+	if lp != null and lp.text != "" and lp.text != "NPC":
+		return lp.text
+	return ""
