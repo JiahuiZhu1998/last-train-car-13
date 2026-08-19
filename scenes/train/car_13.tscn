@@ -198,6 +198,7 @@ theme_override_colors/font_color = Color(0.82, 0.95, 1.0, 1)
 theme_override_font_sizes/font_size = 11
 
 [node name="DoorSign" type="Panel" parent="DoorBackToDining"]
+visible = false
 offset_left = -8.0
 offset_top = -27.0
 offset_right = 135.0
@@ -228,6 +229,7 @@ theme_override_colors/font_color = Color(0.82, 0.95, 1.0, 1)
 theme_override_font_sizes/font_size = 11
 
 [node name="DoorSign" type="Panel" parent="DoorToEngine"]
+visible = false
 offset_left = -135.0
 offset_top = -27.0
 offset_right = 11.0
