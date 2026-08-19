@@ -90,3 +90,18 @@ static func apply(balloon: CanvasLayer, label: Label, speaker: String = "") -> v
 	tween.set_loops()
 	tween.tween_property(hint, "modulate:a", 0.15, 0.6).from(1.0)
 	tween.tween_property(hint, "modulate:a", 1.0, 0.6)
+
+	# Fade the balloon in whenever it is shown. Toggling visibility stays owned
+	# by the dialogue scripts; this only animates the presentation.
+	balloon.visibility_changed.connect(_on_balloon_shown.bind(balloon))
+
+static func _on_balloon_shown(b: CanvasLayer) -> void:
+	if b == null or not b.visible:
+		return
+	for child in b.get_children():
+		if child is CanvasItem and child.name != "ContinueHint":
+			child.modulate.a = 0.0
+	var tw := b.create_tween()
+	for child in b.get_children():
+		if child is CanvasItem and child.name != "ContinueHint":
+			tw.tween_property(child, "modulate:a", 1.0, 0.22).from(0.0)

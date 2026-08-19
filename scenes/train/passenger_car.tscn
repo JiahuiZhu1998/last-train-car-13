@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="" load_steps=15 sub_resource_count=7]
+﻿[gd_scene format=3 uid="" load_steps=17 sub_resource_count=7]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/characters/npc.gd" id="2"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://0tw21bprl4dc" path="res://assets/shadow_passenger.png" id="6"]
 
 [ext_resource type="Texture2D" uid="uid://cuknfgi4o873x" path="res://assets/environment/train/passenger_car_bg.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/passenger_sprite.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/key_icon.png" id="9"]
+
+[ext_resource type="Script" path="res://scripts/ui/feedback_label.gd" id="10"]
+[ext_resource type="Script" path="res://scripts/ui/hint_controller.gd" id="11"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(14, 14)
@@ -30,8 +35,20 @@ size = Vector2(320, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7"]
 size = Vector2(320, 8)
 
-[node name="PassengerCar" type="Node2D"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plate"]
+bg_color = Color(0.05, 0.07, 0.12, 0.92)
+border_color = Color(0.5, 0.85, 1.0, 1.0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+
+[node name="PassengerCar" type="Node2D"]
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("7")
 centered = false
@@ -42,11 +59,13 @@ offset_top = 140.0
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.15, 0.12, 0.18, 1)
+visible = false
 
 [node name="WallTop" type="ColorRect" parent="."]
 offset_right = 320.0
 offset_bottom = 30.0
 color = Color(0.08, 0.06, 0.1, 1)
+visible = false
 
 [node name="Seat1" type="ColorRect" parent="."]
 offset_left = 20.0
@@ -54,6 +73,7 @@ offset_top = 50.0
 offset_right = 60.0
 offset_bottom = 100.0
 color = Color(0.3, 0.3, 0.34, 1)
+visible = false
 
 [node name="Seat2" type="ColorRect" parent="."]
 offset_left = 80.0
@@ -61,6 +81,7 @@ offset_top = 50.0
 offset_right = 120.0
 offset_bottom = 100.0
 color = Color(0.3, 0.3, 0.34, 1)
+visible = false
 
 [node name="WallCollisionTop" type="StaticBody2D" parent="."]
 position = Vector2(160.0, 4.0)
@@ -98,6 +119,8 @@ position = Vector2(200.0, 80.0)
 script = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC_Passenger"]
+texture = ExtResource("8")
+centered = true
 
 [node name="HitArea" type="Area2D" parent="NPC_Passenger"]
 collision_layer = 4
@@ -126,6 +149,7 @@ autowrap_mode = 3
 theme_override_font_sizes/font_size = 10
 
 [node name="NpcLabel" type="Label" parent="NPC_Passenger"]
+visible = false
 offset_left = -14.0
 offset_top = -28.0
 offset_right = 14.0
@@ -149,6 +173,7 @@ shape = SubResource("RectangleShape2D_4")
 texture = ExtResource("6")
 centered = true
 [node name="EnemyLabel" type="Label" parent="EncounterTrigger"]
+visible = false
 offset_left = -18.0
 offset_top = -30.0
 offset_right = 18.0
@@ -174,7 +199,18 @@ offset_top = -18.0
 offset_right = 8.0
 offset_bottom = -5.0
 text = "> Dining"
-theme_override_font_sizes/font_size = 9
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.82, 0.95, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+
+[node name="DoorSign" type="Panel" parent="DoorToDiningCar"]
+offset_left = -135.0
+offset_top = -27.0
+offset_right = 11.0
+offset_bottom = 5.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plate")
 
 [node name="SceneLabel" type="Label" parent="."]
 offset_left = 4.0
@@ -188,12 +224,11 @@ modulate = Color(0.6, 0.6, 0.6, 1)
 position = Vector2(120.0, 120.0)
 script = ExtResource("5")
 
-[node name="KeyVisual" type="ColorRect" parent="Car13Key"]
-offset_left = -6.0
-offset_top = -4.0
-offset_right = 6.0
-offset_bottom = 4.0
-color = Color(0.95, 0.8, 0.2, 1)
+[node name="KeyVisual" type="Sprite2D" parent="Car13Key"]
+texture = ExtResource("9")
+centered = true
+position = Vector2(0, 0)
+scale = Vector2(0.7, 0.7)
 
 [node name="PickupArea" type="Area2D" parent="Car13Key"]
 collision_layer = 4
@@ -201,18 +236,24 @@ collision_mask = 1
 
 
 [node name="FeedbackLabel" type="Label" parent="Car13Key"]
-offset_left = -70.0
-offset_top = -22.0
-offset_right = 70.0
-offset_bottom = -6.0
+offset_left = -82.0
+offset_top = -28.0
+offset_right = 82.0
+offset_bottom = 2.0
 horizontal_alignment = 1
+autowrap_mode = 3
 text = ""
-modulate = Color(1, 0.85, 0.3, 1)
+modulate = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_plate")
+script = ExtResource("10")
 
 [node name="Col" type="CollisionShape2D" parent="Car13Key/PickupArea"]
-
 shape = SubResource("RectangleShape2D_1")
+
 [node name="KeyLabel" type="Label" parent="Car13Key"]
+visible = false
 offset_left = -16.0
 offset_top = -22.0
 offset_right = 16.0
@@ -222,13 +263,22 @@ text = "KEY"
 theme_override_font_sizes/font_size = 9
 modulate = Color(1, 0.9, 0.4, 1)
 [node name="ControlHint" type="CanvasLayer" parent="."]
+script = ExtResource("11")
+
+[node name="HintPanel" type="ColorRect" parent="ControlHint"]
+offset_left = 70.0
+offset_top = 164.0
+offset_right = 250.0
+offset_bottom = 178.0
+color = Color(0.05, 0.06, 0.1, 0.55)
 
 [node name="Label" type="Label" parent="ControlHint"]
-offset_left = 60.0
-offset_top = 4.0
-offset_right = 260.0
-offset_bottom = 16.0
+offset_left = 72.0
+offset_top = 165.0
+offset_right = 248.0
+offset_bottom = 177.0
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 9
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 8
 text = "WASD / Arrows: Move   |   E: Interact"
-modulate = Color(0.9, 0.95, 1.0, 1)
+modulate = Color(0.85, 0.9, 1.0, 0.6)
